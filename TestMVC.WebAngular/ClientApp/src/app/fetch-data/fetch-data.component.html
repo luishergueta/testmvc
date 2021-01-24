@@ -1,0 +1,34 @@
+<h1>Employee Search</h1>
+
+<div class="form-group">
+  <label htmlFor="employeeId">Employee Id</label>
+  <input type="text" [(ngModel)]="employeeId" maxLength="9" class="form-control" id="employeeId"
+         placeholder="Enter Employee id" numbersOnly />
+</div>
+<div class="form-group">
+  <button class="btn btn-primary btn-sm" (click)="getEmployee()">Get Employees</button>
+</div>
+<div class="form-group">
+  <label class="animate-show-hide" *ngIf="error">Is Not Valid Code</label>
+  <label class="animate-show-hide" *ngIf="employeeCount>=0">Employee found {{employeeCount}}</label>
+</div>
+<table class='table' *ngIf="employees$">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Contract Type Name</th>
+      <th>Role Name</th>
+      <th>Annual Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees$ | async">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.contractTypeName }}</td>
+      <td>{{ employee.roleName }}</td>
+      <td>{{ employee.annualSalary }}</td>
+    </tr>
+  </tbody>
+</table>
